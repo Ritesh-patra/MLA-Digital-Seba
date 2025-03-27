@@ -3,151 +3,346 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Service Booking Form</title>
+  <title>Professional Service Booking Form</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    // Initialize EmailJS
-    (function () {
-      emailjs.init("oDKVVQPEt62XkW9qK"); // Replace with your EmailJS User ID
-    })();
-  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    .form-section {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    .file-upload {
+      border: 2px dashed #cbd5e0;
+      transition: all 0.3s ease;
+    }
+    .file-upload:hover {
+      border-color: #4299e1;
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
-  <div class="container mx-auto ">
+<body class="bg-gray-50">
+  <div class="container mx-auto py-8 px-4">
     <!-- Form Section -->
-    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-      <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Service Booking Form</h2>
-      <form id="serviceForm" class="space-y-4">
-        <!-- First Name -->
-        <div>
-          <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
-          <input type="text" id="firstName" name="firstName" required
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+    <div class="max-w-2xl mx-auto form-section p-8 rounded-xl shadow-lg">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800">Service Booking Form</h2>
+        <p class="text-gray-600 mt-2">Fill in your details to book our professional services</p>
+      </div>
+      
+      <form id="serviceForm" action="process_booking.php" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <!-- Personal Information Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- First Name -->
+          <div>
+            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-user text-gray-400"></i>
+              </div>
+              <input type="text" id="firstName" name="firstName" required
+                class="pl-10 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+          </div>
 
-        <!-- Last Name -->
-        <div>
-          <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-          <input type="text" id="lastName" name="lastName" required
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+          <!-- Last Name -->
+          <div>
+            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-user text-gray-400"></i>
+              </div>
+              <input type="text" id="lastName" name="lastName" required
+                class="pl-10 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+          </div>
 
-        <!-- Mobile Number -->
-        <div>
-          <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile Number</label>
-          <input type="tel" id="mobile" name="mobile" required
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+          <!-- Mobile Number -->
+          <div>
+            <label for="mobile" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number *</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-phone text-gray-400"></i>
+              </div>
+              <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}"
+                class="pl-10 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="9876543210">
+            </div>
+          </div>
 
-        <!-- Age -->
-        <div>
-          <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-          <input type="number" id="age" name="age" required
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <!-- Age -->
+          <div>
+            <label for="age" class="block text-sm font-medium text-gray-700 mb-1">Age *</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-birthday-cake text-gray-400"></i>
+              </div>
+              <input type="number" id="age" name="age" min="18" max="100" required
+                class="pl-10 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+          </div>
         </div>
 
         <!-- Category Selection -->
         <div>
-          <label class="block text-sm font-medium text-gray-700">Select Service</label>
-          <div class="mt-1 space-y-2">
-            <label class="inline-flex items-center">
-              <input type="radio" name="category" value="AC Repair" required
-                class="form-radio h-4 w-4 text-blue-600">
-              <span class="ml-2 text-gray-700">AC Repair</span>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Select Service *</label>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <!-- Electrical Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Electrician" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-bolt text-blue-500 mr-1"></i> Electrician
+              </span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="category" value="Mechanic" required
-                class="form-radio h-4 w-4 text-blue-600">
-              <span class="ml-2 text-gray-700">Mechanic</span>
+            
+            <!-- AC Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="AC Repair" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-snowflake text-blue-500 mr-1"></i> AC Repair
+              </span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="category" value="Plumber" required
-                class="form-radio h-4 w-4 text-blue-600">
-              <span class="ml-2 text-gray-700">Plumber</span>
+            
+            <!-- Appliance Mechanics -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Appliance Mechanic" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-cogs text-blue-500 mr-1"></i> Appliance Mechanic
+              </span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="category" value="Carpenter" required
-                class="form-radio h-4 w-4 text-blue-600">
-              <span class="ml-2 text-gray-700">Carpenter</span>
+            
+            <!-- Water Purifiers -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="RO & Water Purifier" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-tint text-blue-500 mr-1"></i> RO & Water Purifier
+              </span>
             </label>
-            <label class="inline-flex items-center">
-              <input type="radio" name="category" value="Shifting" required
-                class="form-radio h-4 w-4 text-blue-600">
-              <span class="ml-2 text-gray-700">Shifting</span>
+            
+            <!-- Plumbing -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Plumber" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-faucet text-blue-500 mr-1"></i> Plumber
+              </span>
+            </label>
+            
+            <!-- Carpentry -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Carpenter" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-hammer text-blue-500 mr-1"></i> Carpenter
+              </span>
+            </label>
+            
+            <!-- Painting -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Painter" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-paint-roller text-blue-500 mr-1"></i> Painter
+              </span>
+            </label>
+            
+            <!-- TV Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="LED TV Fitting" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-tv text-blue-500 mr-1"></i> LED TV Fitting
+              </span>
+            </label>
+            
+            <!-- Home Appliances -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Home Appliances" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-home text-blue-500 mr-1"></i> Home Appliances
+              </span>
+            </label>
+            
+            <!-- Construction -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Construction Worker" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-hard-hat text-blue-500 mr-1"></i> Construction Worker
+              </span>
+            </label>
+            
+            <!-- Tank Cleaning -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Tank Cleaner" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-water text-blue-500 mr-1"></i> Tank Cleaner
+              </span>
+            </label>
+            
+            <!-- Moving Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Movers & Packers" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-truck text-blue-500 mr-1"></i> Movers & Packers
+              </span>
+            </label>
+            
+            <!-- Medical Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Ambulance" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-ambulance text-blue-500 mr-1"></i> Ambulance
+              </span>
+            </label>
+            
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Nurse" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-user-nurse text-blue-500 mr-1"></i> Nurse
+              </span>
+            </label>
+            
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Doctor" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-user-md text-blue-500 mr-1"></i> Doctor
+              </span>
+            </label>
+            
+            <!-- Veterinary -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Veterinary Doctor" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-paw text-blue-500 mr-1"></i> Veterinary Doctor
+              </span>
+            </label>
+            
+            <!-- Event Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Party & Event Decoration" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-birthday-cake text-blue-500 mr-1"></i> Party & Event Decoration
+              </span>
+            </label>
+            
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Catering Services" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-utensils text-blue-500 mr-1"></i> Catering Services
+              </span>
+            </label>
+            
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Photographer & Videographer" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-camera text-blue-500 mr-1"></i> Photographer & Videographer
+              </span>
+            </label>
+            
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="DJ & Sound System" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-music text-blue-500 mr-1"></i> DJ & Sound System
+              </span>
+            </label>
+            
+            <!-- Home Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Tiles Fitting" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-border-style text-blue-500 mr-1"></i> Tiles Fitting
+              </span>
+            </label>
+            
+            <!-- Professional Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Lawyer & Legal Work" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-gavel text-blue-500 mr-1"></i> Lawyer & Legal Work
+              </span>
+            </label>
+            
+            <!-- Vehicle Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Auto" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-car-side text-blue-500 mr-1"></i> Auto (3-Wheeler)
+              </span>
+            </label>
+            
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="2 Wheeler" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-motorcycle text-blue-500 mr-1"></i> 2 Wheeler
+              </span>
+            </label>
+            
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Cab (4 Wheeler)" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-taxi text-blue-500 mr-1"></i> Cab (4 Wheeler)
+              </span>
+            </label>
+            
+            <!-- Other Services -->
+            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Laundry" required class="form-radio h-5 w-5 text-blue-600">
+              <span class="ml-2 text-gray-700">
+                <i class="fas fa-tshirt text-blue-500 mr-1"></i> Laundry
+              </span>
             </label>
           </div>
         </div>
 
-        <!-- Document Upload -->
-        <div>
-          <label for="document" class="block text-sm font-medium text-gray-700">Upload Document</label>
-          <input type="file" id="document" name="document" accept=".pdf,.doc,.docx" required
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <!-- Document Upload Section -->
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Upload Documents *</label>
+            
+            <!-- Aadhar Card -->
+            <div class="mb-4">
+              <label for="aadhar" class="block text-sm font-medium text-gray-700 mb-1">Aadhar Card *</label>
+              <div class="file-upload relative p-4 rounded-lg bg-white">
+                <input type="file" id="aadhar" name="aadhar" accept=".pdf,.jpg,.jpeg,.png" required
+                  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                <div class="text-center">
+                  <i class="fas fa-file-upload text-3xl text-blue-500 mb-2"></i>
+                  <p class="text-sm text-gray-600">Click to upload Aadhar Card</p>
+                  <p class="text-xs text-gray-500 mt-1">PDF, JPG, or PNG (Max 5MB)</p>
+                </div>
+              </div>
+            </div>
+     
+          </div>
         </div>
 
         <!-- Submit Button -->
-        <div>
+        <div class="pt-4">
           <button type="submit"
-            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            Submit
+            class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out flex items-center justify-center">
+            <i class="fas fa-paper-plane mr-2"></i> Submit Booking
           </button>
         </div>
       </form>
 
       <!-- Success Message -->
-      <p id="successMessage" class="hidden mt-4 text-center text-green-600 font-semibold">Form submitted successfully!</p>
+      <div id="successMessage" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-lg text-center">
+        <i class="fas fa-check-circle text-4xl text-green-500 mb-3"></i>
+        <h3 class="text-lg font-medium text-green-800">Booking Submitted Successfully!</h3>
+        <p class="text-green-600 mt-1">We'll contact you shortly to confirm your appointment.</p>
+      </div>
     </div>
   </div>
 
+  <!-- PHP Processing Script (process_booking.php) -->
   <script>
-    // Handle form submission
-    document.getElementById("serviceForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      // Prepare form data
-      const formData = new FormData(this);
-      const file = formData.get("document"); // Get the document file
-
-      // Check if file is selected
-      if (file && file.size > 0) {
-        const reader = new FileReader();
-
-        reader.onload = function () {
-          const fileBase64 = reader.result; // Get Base64 data (including the data URL prefix)
-
-          // Prepare data for EmailJS
-          const data = {
-            firstName: formData.get("firstName"),
-            lastName: formData.get("lastName"),
-            mobile: formData.get("mobile"),
-            age: formData.get("age"),
-            category: formData.get("category"),
-            document: fileBase64, // Send Base64 document (with data URL prefix)
-            documentName: file.name, // Send file name
-          };
-
-          // Send email using EmailJS
-          emailjs.send("ritesh_11", "template_s1lpld5", data)
-            .then(function (response) {
-              console.log("SUCCESS!", response.status, response.text);
-              document.getElementById("successMessage").classList.remove("hidden");
-              document.getElementById("serviceForm").reset();
-            })
-            .catch(function (error) {
-              console.log("FAILED...", error);
-            });
-        };
-
-        reader.readAsDataURL(file); // Convert file to Base64
-      } else {
-        alert("Please select a document before submitting.");
-      }
+    document.getElementById('serviceForm').addEventListener('submit', function(e) {
+      const form = this;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalText = submitButton.innerHTML;
+      
+      // Show loading state
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+      
+      // You can add additional form validation here if needed
+      
+      // Form will submit to process_booking.php as specified in the form action
     });
   </script>
 </body>
 </html>
-
-
-<!-- template_s1lpld5 -->
-<!-- ritesh_11 -->
