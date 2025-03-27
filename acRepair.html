@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Repair Services - MLA Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-select {
+            background-color: #10b981;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .category-select:hover {
+            background-color: #059669;
+        }
+
+        .category-select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-green-100 to-green-300 min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+           
+            <h1 class="text-xl md:text-4xl font-bold text-center text-gray-800">Complete Appliance Repair Services</h1>
+            <div class="w-24"></div> <!-- Spacer for balance -->
+        </div>
+    </header>
+
+    <!-- Category Navigation - Dropdown Style -->
+    <div class="bg-gray-100 sticky top-16 z-40 shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-center">
+                <select id="categorySelect" class="category-select px-7 py-2 rounded-full focus:outline-none"
+                    onchange="redirectToCategory()">
+                    <option value="acRepair.html" selected>AC Repair</option>
+                    <option value="Plumber.html">Plumber</option>
+                    <option value="mechanic.html">Mechanic</option>
+                    <option value="Electrical.html">Electrical</option>
+                    <option value="Carpenter.html">Carpenter</option>
+                    <option value="Shifting.html">Shifting & Moving</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- AC Repair Specialists Section -->
+        <section id="ac-specialists" class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-green-500">Professional AC, Fridge & Washing Machine Services</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- AC Specialist 1 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-green-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-green-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-green-300 rounded-full flex items-center justify-center text-green-800 text-4xl font-bold">
+                                AK
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">Lucky Patro</h3>
+                        <p class="text-green-600 font-medium">AC, Refrigerator, Washing Machine Technician</p>
+                        <div class="flex items-center mt-1 mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-1">(4.5)</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Berhampur</p>
+                        <p class="text-gray-600 text-sm mt-1">Experience: 7 years</p>
+                        <button onclick="bookNow('Lucky Patro', 'AC Technician')"
+                            class="w-full py-2 px-5 bg-green-500 text-white mt-4 rounded-lg hover:bg-green-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+
+                <!-- AC Specialist 2 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-green-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-green-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-green-300 rounded-full flex items-center justify-center text-green-800 text-4xl font-bold">
+                                RS
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">V Sridhar Kumar</h3>
+                        <p class="text-green-600 font-medium">AC Repair Expert</p>
+                        <div class="flex items-center mt-1 mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-line"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-1">(4.0)</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Berhampur</p>
+                        <p class="text-gray-600 text-sm mt-1">Experience: 9 years</p>
+                        <button onclick="bookNow('V Sridhar Kumar', 'AC Repair Expert')"
+                            class="w-full py-2 px-5 bg-green-500 text-white mt-4 rounded-lg hover:bg-green-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+
+                <!-- AC Specialist 3 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-green-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-green-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-green-300 rounded-full flex items-center justify-center text-green-800 text-4xl font-bold">
+                                PP
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">Sushant</h3>
+                        <p class="text-green-600 font-medium">AC Service Specialist</p>
+                        <div class="flex items-center mt-1 mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-1">(5.0)</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Berhampur</p>
+                        <p class="text-gray-600 text-sm mt-1">Experience: 5 years</p>
+                        <button onclick="bookNow('Sushant', 'AC Service Specialist')"
+                            class="w-full py-2 px-5 bg-green-500 text-white mt-4 rounded-lg hover:bg-green-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+
+                <!-- AC Specialist 4 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-green-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-green-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-green-300 rounded-full flex items-center justify-center text-green-800 text-4xl font-bold">
+                                VG
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">SK Saahid</h3>
+                        <p class="text-green-600 font-medium">AC Installation Expert</p>
+                        <div class="flex items-center mt-1 mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                                <i class="ri-star-line"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-1">(3.5)</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Berhampur</p>
+                        <p class="text-gray-600 text-sm mt-1">Experience: 6 years</p>
+                        <button onclick="bookNow('SK Saahid', 'AC Installation Expert')"
+                            class="w-full py-2 px-5 bg-green-500 text-white mt-4 rounded-lg hover:bg-green-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Offered Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-green-500">Our Comprehensive Appliance Services</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- AC Services -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-green-500 text-3xl mb-3">
+                        <i class="ri-snowy-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">AC Services</h3>
+                    <p class="text-gray-600">Complete AC solutions including installation, repair, gas refilling, and regular maintenance for all brands.</p>
+                </div>
+                
+                <!-- Refrigerator Services -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-green-500 text-3xl mb-3">
+                        <i class="ri-fridge-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Refrigerator Repair</h3>
+                    <p class="text-gray-600">Expert refrigerator servicing including gas charging, compressor repair, thermostat issues, and more.</p>
+                </div>
+                
+                <!-- Washing Machine Services -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-green-500 text-3xl mb-3">
+                        <i class="ri-home-washing-machine-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Washing Machine Repair</h3>
+                    <p class="text-gray-600">Professional repair for all washing machine types - motor issues, drainage problems, spin cycle fixes.</p>
+                </div>
+                
+                <!-- Common Services 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-green-500 text-3xl mb-3">
+                        <i class="ri-tools-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Preventive Maintenance</h3>
+                    <p class="text-gray-600">Regular servicing plans for all appliances to prevent breakdowns and extend lifespan.</p>
+                </div>
+                
+                <!-- Common Services 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-green-500 text-3xl mb-3">
+                        <i class="ri-flashlight-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Electrical Repairs</h3>
+                    <p class="text-gray-600">Fixing wiring issues, power supply problems, and electrical component failures in all appliances.</p>
+                </div>
+                
+                <!-- Common Services 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-green-500 text-3xl mb-3">
+                        <i class="ri-customer-service-2-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Emergency Support</h3>
+                    <p class="text-gray-600">24/7 emergency repair services for urgent appliance breakdowns and malfunctions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-green-500">Why Choose Our AC Repair Services</h2>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Certified and experienced technicians</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>90-day service warranty on all repairs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Genuine parts and accessories</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Transparent pricing with no hidden charges</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Same-day service availability</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Advanced diagnostic equipment</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Service all brands and models</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>24/7 emergency service available</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">MLA Digital</h3>
+                    <p class="text-gray-400">Your trusted partner for all home and vehicle services.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                    <p class="flex items-center text-gray-400 mb-2">
+                        <i class="ri-phone-line mr-2"></i> +91 9078161888
+                    </p>
+                    <p class="flex items-center text-gray-400 mb-2">
+                        <i class="ri-mail-line mr-2"></i> info@mladigital.com
+                    </p>
+                    <p class="flex items-center text-gray-400">
+                        <i class="ri-map-pin-line mr-2"></i> GandhiNagar
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-facebook-fill text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-instagram-line text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-twitter-fill text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-youtube-fill text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>© 2025 MLA Digital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function bookNow(serviceName, category) {
+            window.location.href = `booking.html?serviceName=${encodeURIComponent(serviceName)}&category=${encodeURIComponent(category)}`;
+        }
+    </script>
+</body>
+
+</html>

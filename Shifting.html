@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plumber Directory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen flex flex-col items-center justify-center p-5">
+    <h1 class="text-4xl font-bold text-gray-800 mb-8">Our Expert Shifting and Moving</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+        <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col items-center justify-center relative">
+            <img src="https://i.pinimg.com/736x/ea/0e/7e/ea0e7eedc2837de99952be82be3e995c.jpg" alt="Plumber 1" class="w-32 h-32 object-contain mx-auto floating ">
+            <h2 class="text-xl font-semibold text-center mt-4">Rajesh Kumar</h2>
+            <Button onclick="bookNow('Rajesh Kumar', 'Plumber') "class="w-36 py-2 px-5 bg-[#9FCCFE] mt-3 rounded-lg">Book Now</Button>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col items-center justify-center relative">
+            <img src="https://i.pinimg.com/736x/65/3a/ac/653aac0f10295ceb56dc2cb8e48f7fcf.jpg" alt="Plumber 1" class="w-32 h-32 object-contain mx-auto floating ">
+            <h2 class="text-xl font-semibold text-center mt-4">Rajan </h2>
+            <Button onclick="bookNow('Rajan', 'Plumber') "class="w-36 py-2 px-5 bg-[#9FCCFE] mt-3 rounded-lg">Book Now</Button>
+        </div>
+
+        
+    </div>
+    <script>
+           function bookNow(ServicesManname, category) {
+            window.location.href = `booking.html?ServicesManname=${encodeURIComponent(ServicesManname)}&category=${encodeURIComponent(category)}`;
+        }
+    </script>
+</body>
+</html>

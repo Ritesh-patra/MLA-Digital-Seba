@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Booking Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS
+    (function () {
+      emailjs.init("oDKVVQPEt62XkW9qK"); // Replace with your EmailJS User ID
+    })();
+  </script>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto ">
+    <!-- Form Section -->
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Service Booking Form</h2>
+      <form id="serviceForm" class="space-y-4">
+        <!-- First Name -->
+        <div>
+          <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+          <input type="text" id="firstName" name="firstName" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Last Name -->
+        <div>
+          <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+          <input type="text" id="lastName" name="lastName" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Mobile Number -->
+        <div>
+          <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+          <input type="tel" id="mobile" name="mobile" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Age -->
+        <div>
+          <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+          <input type="number" id="age" name="age" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Category Selection -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Select Service</label>
+          <div class="mt-1 space-y-2">
+            <label class="inline-flex items-center">
+              <input type="radio" name="category" value="AC Repair" required
+                class="form-radio h-4 w-4 text-blue-600">
+              <span class="ml-2 text-gray-700">AC Repair</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" name="category" value="Mechanic" required
+                class="form-radio h-4 w-4 text-blue-600">
+              <span class="ml-2 text-gray-700">Mechanic</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" name="category" value="Plumber" required
+                class="form-radio h-4 w-4 text-blue-600">
+              <span class="ml-2 text-gray-700">Plumber</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" name="category" value="Carpenter" required
+                class="form-radio h-4 w-4 text-blue-600">
+              <span class="ml-2 text-gray-700">Carpenter</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" name="category" value="Shifting" required
+                class="form-radio h-4 w-4 text-blue-600">
+              <span class="ml-2 text-gray-700">Shifting</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Document Upload -->
+        <div>
+          <label for="document" class="block text-sm font-medium text-gray-700">Upload Document</label>
+          <input type="file" id="document" name="document" accept=".pdf,.doc,.docx" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Submit
+          </button>
+        </div>
+      </form>
+
+      <!-- Success Message -->
+      <p id="successMessage" class="hidden mt-4 text-center text-green-600 font-semibold">Form submitted successfully!</p>
+    </div>
+  </div>
+
+  <script>
+    // Handle form submission
+    document.getElementById("serviceForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Prepare form data
+      const formData = new FormData(this);
+      const file = formData.get("document"); // Get the document file
+
+      // Check if file is selected
+      if (file && file.size > 0) {
+        const reader = new FileReader();
+
+        reader.onload = function () {
+          const fileBase64 = reader.result; // Get Base64 data (including the data URL prefix)
+
+          // Prepare data for EmailJS
+          const data = {
+            firstName: formData.get("firstName"),
+            lastName: formData.get("lastName"),
+            mobile: formData.get("mobile"),
+            age: formData.get("age"),
+            category: formData.get("category"),
+            document: fileBase64, // Send Base64 document (with data URL prefix)
+            documentName: file.name, // Send file name
+          };
+
+          // Send email using EmailJS
+          emailjs.send("ritesh_11", "template_s1lpld5", data)
+            .then(function (response) {
+              console.log("SUCCESS!", response.status, response.text);
+              document.getElementById("successMessage").classList.remove("hidden");
+              document.getElementById("serviceForm").reset();
+            })
+            .catch(function (error) {
+              console.log("FAILED...", error);
+            });
+        };
+
+        reader.readAsDataURL(file); // Convert file to Base64
+      } else {
+        alert("Please select a document before submitting.");
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+<!-- template_s1lpld5 -->
+<!-- ritesh_11 -->

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <style>
+        .card {
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Select a Service</h2>
+
+    <div class="card" onclick="bookNow('Rahul Sharma', 'AC Repair')">
+        <h3>Rahul Sharma</h3>
+        <p>AC Repair</p>
+    </div>
+
+    <div class="card" onclick="bookNow('Amit Verma', 'Carpenter')">
+        <h3>Amit Verma</h3>
+        <p>Carpenter</p>
+    </div>
+
+    <div class="card" onclick="bookNow('Rajesh Kumar', 'Electrician')">
+        <h3>Rajesh Kumar</h3>
+        <p>Electrician</p>
+    </div>
+
+    <script>
+        function bookNow(name, category) {
+            window.location.href = `booking.html?name=${encodeURIComponent(name)}&category=${encodeURIComponent(category)}`;
+        }
+    </script>
+</body>
+</html>

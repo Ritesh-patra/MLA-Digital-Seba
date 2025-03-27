@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanic Services - MLA Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-select {
+            background-color: #f97316;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .category-select:hover {
+            background-color: #ea580c;
+        }
+
+        .category-select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-orange-100 to-orange-300 min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center">
+                <i class="ri-arrow-left-line text-2xl mr-2 text-orange-500"></i>
+                <span class="text-gray-700">Back to Home</span>
+            </a>
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Mechanic Services</h1>
+            <div class="w-24"></div> <!-- Spacer for balance -->
+        </div>
+    </header>
+
+    <!-- Category Navigation - Dropdown Style -->
+    <div class="bg-gray-100 sticky top-16 z-40 shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-center">
+                <select id="categorySelect" class="category-select px-7 py-2 rounded-full focus:outline-none"
+                    onchange="redirectToCategory()">
+                    <option value="mechanic.html" selected>Mechanic</option>
+                    <option value="Plumber.html">Plumber</option>
+                    <option value="acRepair.html">AC Repair</option>
+                    <option value="Electrical.html">Electrical</option>
+                    <option value="Carpenter.html">Carpenter</option>
+                    <option value="Shifting.html">Shifting & Moving</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Mechanics Section -->
+        <section id="mechanics" class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-orange-500">Mechanics</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Mechanic 1 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-orange-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-orange-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-orange-300 rounded-full flex items-center justify-center text-orange-800 text-4xl font-bold">
+                                RV
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">Ravi Verma</h3>
+                        <p class="text-orange-600 font-medium">Auto Mechanic</p>
+                        <div class="flex items-center mt-1 mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-1">(4.5)</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">123 Auto Street, Mumbai, Maharashtra</p>
+                        <p class="text-gray-600 text-sm mt-1">Experience: 8 years</p>
+                        <button onclick="bookNow('Ravi Verma', 'Auto Mechanic')"
+                            class="w-full py-2 px-5 bg-orange-500 text-white mt-4 rounded-lg hover:bg-orange-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+
+                <!-- Mechanic 2 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-orange-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-orange-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-orange-300 rounded-full flex items-center justify-center text-orange-800 text-4xl font-bold">
+                                SK
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">Suresh Kumar</h3>
+                        <p class="text-orange-600 font-medium">Car Mechanic</p>
+                        <div class="flex items-center mt-1 mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-line"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-1">(4.0)</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">456 Engine Road, Delhi, Delhi</p>
+                        <p class="text-gray-600 text-sm mt-1">Experience: 10 years</p>
+                        <button onclick="bookNow('Suresh Kumar', 'Car Mechanic')"
+                            class="w-full py-2 px-5 bg-orange-500 text-white mt-4 rounded-lg hover:bg-orange-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+
+                <!-- Mechanic 3 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-orange-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-orange-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-orange-300 rounded-full flex items-center justify-center text-orange-800 text-4xl font-bold">
+                                AP
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">Ajay Patil</h3>
+                        <p class="text-orange-600 font-medium">Bike Mechanic</p>
+                        <div class="flex items-center mt-1 mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-1">(5.0)</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">789 Bike Lane, Bangalore, Karnataka</p>
+                        <p class="text-gray-600 text-sm mt-1">Experience: 6 years</p>
+                        <button onclick="bookNow('Ajay Patil', 'Bike Mechanic')"
+                            class="w-full py-2 px-5 bg-orange-500 text-white mt-4 rounded-lg hover:bg-orange-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+
+                <!-- Mechanic 4 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-orange-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-orange-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-orange-300 rounded-full flex items-center justify-center text-orange-800 text-4xl font-bold">
+                                MS
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">Manoj Singh</h3>
+                        <p class="text-orange-600 font-medium">Heavy Vehicle Mechanic</p>
+                        <div class="flex items-center mt-1 mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                                <i class="ri-star-line"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-1">(3.5)</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">234 Truck Road, Chennai, Tamil Nadu</p>
+                        <p class="text-gray-600 text-sm mt-1">Experience: 12 years</p>
+                        <button onclick="bookNow('Manoj Singh', 'Heavy Vehicle Mechanic')"
+                            class="w-full py-2 px-5 bg-orange-500 text-white mt-4 rounded-lg hover:bg-orange-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Offered Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-orange-500">Services Offered</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-3xl mb-3">
+                        <i class="ri-tools-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">General Repairs</h3>
+                    <p class="text-gray-600">Comprehensive diagnostic and repair services for all types of vehicles.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-3xl mb-3">
+                        <i class="ri-oil-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Oil Change</h3>
+                    <p class="text-gray-600">Regular maintenance with quality oil and filter replacement.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-3xl mb-3">
+                        <i class="ri-battery-2-charge-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Battery Service</h3>
+                    <p class="text-gray-600">Battery testing, charging, and replacement services.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-3xl mb-3">
+                        <i class="ri-steering-2-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Wheel Alignment</h3>
+                    <p class="text-gray-600">Precision wheel alignment to ensure smooth handling and extended tire life.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-3xl mb-3">
+                        <i class="ri-car-washing-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">AC Service</h3>
+                    <p class="text-gray-600">Complete air conditioning system diagnosis, repair, and maintenance.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-orange-500 text-3xl mb-3">
+                        <i class="ri-roadster-fill"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Engine Tuning</h3>
+                    <p class="text-gray-600">Performance optimization and engine tuning for better efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-orange-500">Why Choose Our Mechanics</h2>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Certified and experienced professionals</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Transparent pricing with no hidden charges</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Quality parts and service guarantee</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Doorstep service available</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Advanced diagnostic equipment</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Service warranty on all repairs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Emergency breakdown assistance</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ri-check-line text-green-500 text-xl mr-2 mt-1"></i>
+                                <span>Timely service completion</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Booking Form Modal -->
+    <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full max-h-90vh overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Book a Mechanic</h2>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="ri-close-line text-2xl"></i>
+                </button>
+            </div>
+            
+            <form id="bookingForm">
+                <input type="hidden" id="serviceName" name="serviceName">
+                <input type="hidden" id="serviceCategory" name="serviceCategory">
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2" for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2" for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2" for="address">Service Address</label>
+                    <textarea id="address" name="address" rows="3" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none"></textarea>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2" for="date">Preferred Date</label>
+                    <input type="date" id="date" name="date" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2" for="time">Preferred Time</label>
+                    <select id="time" name="time" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none">
+                        <option value="">Select a time slot</option>
+                        <option value="morning">Morning (8 AM - 12 PM)</option>
+                        <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                        <option value="evening">Evening (4 PM - 8 PM)</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2" for="issue">Describe the Issue</label>
+                    <textarea id="issue" name="issue" rows="3" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full py-2 px-5 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">MLA Digital</h3>
+                    <p class="text-gray-400">Your trusted partner for all home and vehicle services.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                    <p class="flex items-center text-gray-400 mb-2">
+                        <i class="ri-phone-line mr-2"></i> +91 9078161888
+                    </p>
+                    <p class="flex items-center text-gray-400 mb-2">
+                        <i class="ri-mail-line mr-2"></i> info@mladigital.com
+                    </p>
+                    <p class="flex items-center text-gray-400">
+                        <i class="ri-map-pin-line mr-2"></i> GandhiNagar
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-facebook-fill text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-instagram-line text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-twitter-fill text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="ri-youtube-fill text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>© 2025 MLA Digital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to redirect to the selected category page
+        function redirectToCategory() {
+            const selectedValue = document.getElementById('categorySelect').value;
+            window.location.href = selectedValue;
+        }
+
+        // Function to open booking modal
+        function bookNow(serviceName, category) {
+            document.getElementById('serviceName').value = serviceName;
+            document.getElementById('serviceCategory').value = category;
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        // Function to close booking modal
+        function closeModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        // Handle form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For demo purposes, we'll just show an alert
+            alert('Booking submitted successfully! We will contact you shortly to confirm your appointment.');
+            
+            closeModal();
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('bookingModal')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
