@@ -198,9 +198,9 @@
     <!-- Header -->
     <header class="bg-white shadow-md py-4">
         <div class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <img src="mla digital logo.png" alt="MLA Services Logo" class="h-10">
-            </a>
+            <div class="flex w-32 h-20 items-center">
+                <img class="w-full h-full object-cover" src="mla digital logo.png" alt="">
+            </div>
             <nav>
                 <a href="index.html" class="text-gray-600 hover:text-primary transition-colors flex items-center">
                     <i class="ri-home-line mr-1"></i> Back to Home
@@ -232,18 +232,18 @@
                             </h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="form-label">Service Provider:</label>
+                                    <label class="form-label block mb-2 text-sm font-medium text-gray-700">Service Provider:</label>
                                     <input type="text" id="ServicesManname" name="ServicesManname" readonly value=""
-                                        class="input-field-readonly">
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
                                 <div>
-                                    <label class="form-label">Service Category:</label>
+                                    <label class="form-label block mb-2 text-sm font-medium text-gray-700">Service Category:</label>
                                     <input type="text" id="category" name="category" readonly value=""
-                                        class="input-field-readonly">
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
                             </div>
                         </div>
-
+                    
                         <!-- Personal Information -->
                         <div>
                             <h3 class="text-gray-700 font-medium mb-3 flex items-center">
@@ -251,29 +251,30 @@
                             </h3>
                             <div class="space-y-4">
                                 <div>
-                                    <label for="name" class="form-label">Full Name <span class="text-red-500">*</span></label>
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Full Name <span class="text-red-500">*</span></label>
                                     <input placeholder="Enter your full name" required type="text" id="name" name="name"
-                                        class="input-field">
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
                                 
                                 <div>
-                                    <label for="phone" class="form-label">Phone Number <span class="text-red-500">*</span></label>
+                                    <label for="phone" class="block mb-2 text-sm font-medium text-gray-700">Phone Number <span class="text-red-500">*</span></label>
                                     <div class="relative">
                                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">+91</span>
                                         <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number"
-                                            class="input-field pl-12" pattern="[0-9]{10}" maxlength="10">
+                                            class="w-full px-4 py-2.5 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                            pattern="[0-9]{10}" maxlength="10">
                                     </div>
                                     <p class="text-xs text-gray-500 mt-1">We'll send confirmation to this number</p>
                                 </div>
                                 
                                 <div>
-                                    <label for="email" class="form-label">Email Address</label>
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email Address</label>
                                     <input type="email" id="email" name="email" placeholder="Enter your email (optional)"
-                                        class="input-field">
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
                             </div>
                         </div>
-
+                    
                         <!-- Service Request -->
                         <div>
                             <h3 class="text-gray-700 font-medium mb-3 flex items-center">
@@ -281,14 +282,15 @@
                             </h3>
                             <div class="space-y-4">
                                 <div>
-                                    <label for="date" class="form-label">Preferred Date <span class="text-red-500">*</span></label>
+                                    <label for="date" class="block mb-2 text-sm font-medium text-gray-700">Preferred Date <span class="text-red-500">*</span></label>
                                     <input type="date" id="date" name="date" required
-                                        class="input-field" min="">
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" min="">
                                 </div>
                                 
                                 <div>
-                                    <label for="time" class="form-label">Preferred Time <span class="text-red-500">*</span></label>
-                                    <select id="time" name="time" required class="input-field">
+                                    <label for="time" class="block mb-2 text-sm font-medium text-gray-700">Preferred Time <span class="text-red-500">*</span></label>
+                                    <select id="time" name="time" required 
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option value="">Select a time slot</option>
                                         <option value="morning">Morning (9:00 AM - 12:00 PM)</option>
                                         <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
@@ -297,31 +299,31 @@
                                 </div>
                                 
                                 <div>
-                                    <label for="address" class="form-label">Service Address <span class="text-red-500">*</span></label>
+                                    <label for="address" class="block mb-2 text-sm font-medium text-gray-700">Service Address <span class="text-red-500">*</span></label>
                                     <textarea id="address" name="address" required placeholder="Enter your complete address"
-                                        class="input-field" rows="2"></textarea>
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
                                 </div>
                                 
                                 <div>
-                                    <label for="message" class="form-label">Additional Information</label>
+                                    <label for="message" class="block mb-2 text-sm font-medium text-gray-700">Additional Information</label>
                                     <textarea id="message" name="message" placeholder="Describe your issue or any special requirements..."
-                                        class="input-field" rows="3"></textarea>
+                                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
-
+                    
                         <!-- Terms and Submit -->
                         <div class="pt-2">
                             <div class="flex items-start mb-4">
-                                <input type="checkbox" id="terms" name="terms" required class="mt-1 mr-2">
+                                <input type="checkbox" id="terms" name="terms" required class="mt-1 mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
                                 <label for="terms" class="text-sm text-gray-600">
-                                    I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a> and 
-                                    <a href="#" class="text-primary hover:underline">Privacy Policy</a>
+                                    I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and 
+                                    <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
                                 </label>
                             </div>
                             
                             <button type="submit"
-                                class="w-full bg-primary hover:bg-orange-600 text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition duration-300 font-medium flex items-center justify-center">
                                 <i class="ri-check-line mr-2"></i> Confirm Booking
                             </button>
                         </div>

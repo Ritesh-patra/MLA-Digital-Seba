@@ -1,34 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plumber Directory</title>
+    <title>Service Provider Directory</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .category-select {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .category-select:hover {
+            background-color: #2563eb;
+        }
+
+        .category-select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen flex flex-col items-center justify-center p-5">
-    <h1 class="text-4xl font-bold text-gray-800 mb-8">Our Expert Shifting and Moving</h1>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
-        <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col items-center justify-center relative">
-            <img src="https://i.pinimg.com/736x/ea/0e/7e/ea0e7eedc2837de99952be82be3e995c.jpg" alt="Plumber 1" class="w-32 h-32 object-contain mx-auto floating ">
-            <h2 class="text-xl font-semibold text-center mt-4">Rajesh Kumar</h2>
-            <Button onclick="bookNow('Rajesh Kumar', 'Plumber') "class="w-36 py-2 px-5 bg-[#9FCCFE] mt-3 rounded-lg">Book Now</Button>
+<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center">
+                <i class="ri-arrow-left-line text-2xl mr-2 text-orange-500"></i>
+                <span class="text-gray-700">Back to Home</span>
+            </a>
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Service Provider Directory</h1>
+            <div class="w-24"></div> <!-- Spacer for balance -->
         </div>
+    </header>
 
-        <div class="bg-white shadow-lg rounded-xl p-5 flex flex-col items-center justify-center relative">
-            <img src="https://i.pinimg.com/736x/65/3a/ac/653aac0f10295ceb56dc2cb8e48f7fcf.jpg" alt="Plumber 1" class="w-32 h-32 object-contain mx-auto floating ">
-            <h2 class="text-xl font-semibold text-center mt-4">Rajan </h2>
-            <Button onclick="bookNow('Rajan', 'Plumber') "class="w-36 py-2 px-5 bg-[#9FCCFE] mt-3 rounded-lg">Book Now</Button>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Electricians Section -->
+        <section id="electricians" class="category-section active mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-yellow-500">Movers & Packers
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Electrician 1 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-40 bg-yellow-50 flex items-center justify-center p-4">
+                        <div class="w-28 h-28 bg-yellow-200 rounded-full flex items-center justify-center">
+                            <div
+                                class="w-24 h-24 bg-yellow-300 rounded-full flex items-center justify-center text-yellow-800 text-4xl font-bold">
+                                AM
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800">Santosh Kumar Panda</h3>
+                        <p class="text-yellow-600 font-medium">Movers & Packers</p>
+                        <p class="text-gray-600 text-sm mt-2">Konishi</p>
+                        <button onclick="bookNow('Santosh Kumar Panda', 'Movers & Packers')"
+                            class="w-full py-2 px-5 bg-yellow-500 text-white mt-4 rounded-lg hover:bg-yellow-600 transition">Book
+                            Now</button>
+                    </div>
+                </div>
+
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Service Provider Directory. All rights reserved.</p>
+            <p class="mt-2 text-gray-400">Find the best service professionals in your area.</p>
         </div>
+    </footer>
 
-        
-    </div>
     <script>
-           function bookNow(ServicesManname, category) {
-            window.location.href = `booking.html?ServicesManname=${encodeURIComponent(ServicesManname)}&category=${encodeURIComponent(category)}`;
+        function bookNow(serviceName, category) {
+            window.location.href = `booking.html?serviceName=${encodeURIComponent(serviceName)}&category=${encodeURIComponent(category)}`;
         }
     </script>
 </body>
+
 </html>
