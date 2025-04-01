@@ -60,19 +60,43 @@
     <!-- Category Navigation - Dropdown Style -->
     <div class="bg-gray-100 sticky top-16 z-40 shadow-sm">
         <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-center">
-                <select id="categorySelect" class="category-select px-7 py-2 rounded-full focus:outline-none"
-                    onchange="redirectToCategory()">
+            <div class="flex  justify-center">
+                <select id="categorySelect" class="category-select px-7 py-2 rounded-full focus:outline-none" onchange="redirectToCategory()">
                     <option value="mechanic.html" selected>Mechanic</option>
+                    <option value="electrician.html">Electrician</option>
+                    <option value="acRepair.html">AC, Refrigerator, Washing Machine Mechanic</option>
+                    <option value="ro.html">RO & Water Purifier Service</option>
                     <option value="Plumber.html">Plumber</option>
-                    <option value="acRepair.html">AC Repair</option>
-                    <option value="Electrical.html">Electrical</option>
                     <option value="Carpenter.html">Carpenter</option>
-                    <option value="Shifting.html">Shifting & Moving</option>
+                    <option value="painter.html">Painter</option>
+                    <option value="tv-fitting.html">LED TV Fitting</option>
+                    <option value="applinces.html">Home Appliances (Geyser, Chimney & More)</option>
+                    <option value="constructionsWorker.html">Construction Worker</option>
+                    <option value="tankcleaner.html">Tank Cleaner</option>
+                    <option value="Shifting.html">Movers & Packers</option>
+                    <option value="ambulance.html">Ambulance</option>
+                    <option value="nursing-care.html">Nurse</option>
+                    <option value="doctor.html">Doctor</option>
+                    <option value="VertinaryDoctor.html">Veterinary Doctor</option>
+                    <option value="dj-services.html">Party & Event Decoration</option>
+                    <option value="catering-services.html">Catering Services</option>
+                    <option value="photografar.html">Photographer & Videographer</option>
+                    <option value="dj.html">DJ & Sound System</option>
+                    <option value="tiles-fitting.html">Tiles Fitting</option>
+                    <option value="legal-services.html">Lawyer & Legal Work</option>
+                    <option value="auto.html">Auto (2 Wheeler, 4 Wheeler)</option>
+                    <option value="laundry.html">Laundry</option>
                 </select>
             </div>
         </div>
     </div>
+    
+    <script>
+    function redirectToCategory() {
+        const select = document.getElementById('categorySelect');
+        window.location.href = select.value;
+    }
+    </script>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">

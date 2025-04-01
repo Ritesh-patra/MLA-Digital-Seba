@@ -123,3 +123,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ]);
 }
 ?>
+
+// Server settings
+// $mail->isSMTP();
+// $mail->Host = 'smtp.gmail.com'; // Your SMTP server
+// $mail->SMTPAuth = true;
+// $mail->Username = 'patrasagarika654@gmail.com'; // Your email
+// $mail->Password = 'dysj xwud kxel fxjq'; // Your app password
+// $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+// $mail->Port = 587;

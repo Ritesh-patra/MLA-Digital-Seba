@@ -4,17 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Provider Directory</title>
+    <title>Auto Service Provider Directory</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
         .service-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
         }
 
         .category-section {
@@ -23,10 +48,22 @@
 
         .category-section.active {
             display: block;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .category-select {
-            background-color: #3b82f6;
+            background-color: #f59e0b;
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 9999px;
@@ -42,65 +79,383 @@
         }
 
         .category-select:hover {
-            background-color: #2563eb;
+            background-color: #d97706;
         }
 
         .category-select:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.5);
+        }
+
+        .rating {
+            display: inline-flex;
+            color: #f59e0b;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .profile-image {
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .profile-image {
+            transform: scale(1.05);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+            }
         }
     </style>
 </head>
 
-<body class="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen">
+<body class="bg-gradient-to-r from-amber-50 to-amber-200 min-h-screen">
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-white shadow-md py-4">
         <div class="container mx-auto px-4 flex items-center justify-between">
-            <a href="index.html" class="flex items-center">
-                <i class="ri-arrow-left-line text-2xl mr-2 text-orange-500"></i>
-                <span class="text-gray-700">Back to Home</span>
+            <a href="index.html" class="flex items-center group">
+                <i class="ri-arrow-left-line text-2xl mr-2 text-amber-500 group-hover:transform group-hover:-translate-x-1 transition-transform"></i>
+                <span class="text-gray-700 group-hover:text-amber-600 transition-colors">Back to Home</span>
             </a>
             <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Service Provider Directory</h1>
-            <div class="w-24"></div> <!-- Spacer for balance -->
+            <div class="w-24 flex justify-end">
+                <button class="text-amber-500 hover:text-amber-600 transition-colors" aria-label="Search">
+                    <i class="ri-search-line text-2xl"></i>
+                </button>
+            </div>
         </div>
     </header>
 
+    <!-- Category Navigation -->
+    <div class="bg-white sticky top-16 z-40 shadow-sm py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center">
+                <select class="category-select" id="categorySelect" onchange="window.location.href=this.value">
+                    <option value="#auto" selected>Auto Services</option>
+                    <option value="#plumber">Plumbers</option>
+                    <option value="#electrician">Electricians</option>
+                    <option value="#ac-repair">AC Repair</option>
+                    <option value="#carpenter">Carpenters</option>
+                    <option value="#painter">Painters</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
-        <!-- Electricians Section -->
-        <section id="electricians" class="category-section active mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 pb-2 border-b-2 border-yellow-500">Auto 
-            </h2>
+        <!-- Auto Services Section -->
+        <section id="auto" class="category-section active mb-12">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 pb-2 border-b-2 border-amber-500">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Auto Services</h2>
+                    <p class="text-gray-600 mt-1">Professional auto repair and maintenance services</p>
+                </div>
+                <div class="mt-3 md:mt-0 flex items-center">
+                    <span class="text-gray-600 mr-2">Filter by:</span>
+                    <select class="bg-white border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <option>All Services</option>
+                        <option>Top Rated</option>
+                        <option>Nearest</option>
+                        <option>Available Today</option>
+                    </select>
+                </div>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Electrician 1 -->
+                <!-- Auto Service Provider 1 -->
                 <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
-                    <div class="h-40 bg-yellow-50 flex items-center justify-center p-4">
-                        <div class="w-28 h-28 bg-yellow-200 rounded-full flex items-center justify-center">
-                            <div
-                                class="w-24 h-24 bg-yellow-300 rounded-full flex items-center justify-center text-yellow-800 text-4xl font-bold">
-                                AM
+                    <div class="badge">Top Rated</div>
+                    <div class="h-48 bg-amber-50 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-32 h-32 bg-amber-200 rounded-full flex items-center justify-center overflow-hidden">
+                                <div class="w-28 h-28 bg-amber-300 rounded-full flex items-center justify-center overflow-hidden">
+                                    <img src="/placeholder.svg?height=112&width=112" alt="Santosh Kumar Panda" class="w-full h-full object-cover profile-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-3">
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                                <span class="text-white ml-1 text-sm">4.5</span>
                             </div>
                         </div>
                     </div>
                     <div class="p-5">
-                        <h3 class="text-xl font-semibold text-gray-800">Santosh Kumar Panda</h3>
-                        <p class="text-yellow-600 font-medium">Satish </p>
-                        <p class="text-gray-600 text-sm mt-2">Berhampur</p>
-                        <button onclick="bookNow('Santosh Kumar Panda', 'Satish ')"
-                            class="w-full py-2 px-5 bg-yellow-500 text-white mt-4 rounded-lg hover:bg-yellow-600 transition">Book
-                            Now</button>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-gray-800">Santosh Kumar Panda</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Available</span>
+                        </div>
+                        <p class="text-amber-600 font-medium flex items-center">
+                            <i class="ri-tools-fill mr-1"></i> Satish Auto Services
+                        </p>
+                        <div class="mt-3 flex items-center text-gray-600 text-sm">
+                            <i class="ri-map-pin-line mr-1"></i>
+                            <p>Berhampur, Odisha</p>
+                        </div>
+                        <div class="mt-2 flex items-center text-gray-600 text-sm">
+                            <i class="ri-time-line mr-1"></i>
+                            <p>Open: 9:00 AM - 7:00 PM</p>
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Car Repair</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Bike Service</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Oil Change</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button onclick="bookNow('Santosh Kumar Panda', 'Satish Auto Services')"
+                                class="flex-1 py-2 px-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition flex items-center justify-center">
+                                <i class="ri-calendar-check-line mr-1"></i> Book Now
+                            </button>
+                            <button onclick="callProvider('9078161888')"
+                                class="w-12 h-10 bg-gray-100 text-amber-500 rounded-lg hover:bg-gray-200 transition flex items-center justify-center pulse-animation">
+                                <i class="ri-phone-line"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Auto Service Provider 2 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-48 bg-amber-50 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-32 h-32 bg-amber-200 rounded-full flex items-center justify-center overflow-hidden">
+                                <div class="w-28 h-28 bg-amber-300 rounded-full flex items-center justify-center overflow-hidden">
+                                    <img src="/placeholder.svg?height=112&width=112" alt="Rajesh Mohanty" class="w-full h-full object-cover profile-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-3">
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-line"></i>
+                                <span class="text-white ml-1 text-sm">4.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-gray-800">Rajesh Mohanty</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Available</span>
+                        </div>
+                        <p class="text-amber-600 font-medium flex items-center">
+                            <i class="ri-tools-fill mr-1"></i> City Auto Works
+                        </p>
+                        <div class="mt-3 flex items-center text-gray-600 text-sm">
+                            <i class="ri-map-pin-line mr-1"></i>
+                            <p>Berhampur, Odisha</p>
+                        </div>
+                        <div class="mt-2 flex items-center text-gray-600 text-sm">
+                            <i class="ri-time-line mr-1"></i>
+                            <p>Open: 8:00 AM - 8:00 PM</p>
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Car Repair</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Towing</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Diagnostics</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button onclick="bookNow('Rajesh Mohanty', 'City Auto Works')"
+                                class="flex-1 py-2 px-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition flex items-center justify-center">
+                                <i class="ri-calendar-check-line mr-1"></i> Book Now
+                            </button>
+                            <button onclick="callProvider('9078161889')"
+                                class="w-12 h-10 bg-gray-100 text-amber-500 rounded-lg hover:bg-gray-200 transition flex items-center justify-center">
+                                <i class="ri-phone-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto Service Provider 3 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="h-48 bg-amber-50 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-32 h-32 bg-amber-200 rounded-full flex items-center justify-center overflow-hidden">
+                                <div class="w-28 h-28 bg-amber-300 rounded-full flex items-center justify-center overflow-hidden">
+                                    <img src="/placeholder.svg?height=112&width=112" alt="Amit Pradhan" class="w-full h-full object-cover profile-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-3">
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <span class="text-white ml-1 text-sm">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-gray-800">Amit Pradhan</h3>
+                            <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Busy</span>
+                        </div>
+                        <p class="text-amber-600 font-medium flex items-center">
+                            <i class="ri-tools-fill mr-1"></i> Premium Auto Care
+                        </p>
+                        <div class="mt-3 flex items-center text-gray-600 text-sm">
+                            <i class="ri-map-pin-line mr-1"></i>
+                            <p>Berhampur, Odisha</p>
+                        </div>
+                        <div class="mt-2 flex items-center text-gray-600 text-sm">
+                            <i class="ri-time-line mr-1"></i>
+                            <p>Open: 10:00 AM - 6:00 PM</p>
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Luxury Cars</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">AC Repair</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Detailing</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button onclick="bookNow('Amit Pradhan', 'Premium Auto Care')"
+                                class="flex-1 py-2 px-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition flex items-center justify-center">
+                                <i class="ri-calendar-check-line mr-1"></i> Book Now
+                            </button>
+                            <button onclick="callProvider('9078161890')"
+                                class="w-12 h-10 bg-gray-100 text-amber-500 rounded-lg hover:bg-gray-200 transition flex items-center justify-center">
+                                <i class="ri-phone-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto Service Provider 4 -->
+                <div class="service-card bg-white shadow-lg rounded-xl overflow-hidden">
+                    <div class="badge">New</div>
+                    <div class="h-48 bg-amber-50 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-32 h-32 bg-amber-200 rounded-full flex items-center justify-center overflow-hidden">
+                                <div class="w-28 h-28 bg-amber-300 rounded-full flex items-center justify-center overflow-hidden">
+                                    <img src="/placeholder.svg?height=112&width=112" alt="Priya Mishra" class="w-full h-full object-cover profile-image">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-3">
+                            <div class="rating">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                                <i class="ri-star-line"></i>
+                                <span class="text-white ml-1 text-sm">3.5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-semibold text-gray-800">Priya Mishra</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Available</span>
+                        </div>
+                        <p class="text-amber-600 font-medium flex items-center">
+                            <i class="ri-tools-fill mr-1"></i> Women's Auto Garage
+                        </p>
+                        <div class="mt-3 flex items-center text-gray-600 text-sm">
+                            <i class="ri-map-pin-line mr-1"></i>
+                            <p>Berhampur, Odisha</p>
+                        </div>
+                        <div class="mt-2 flex items-center text-gray-600 text-sm">
+                            <i class="ri-time-line mr-1"></i>
+                            <p>Open: 9:00 AM - 5:00 PM</p>
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Two-Wheeler</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Electric</span>
+                            <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full">Tune-up</span>
+                        </div>
+                        <div class="mt-4 flex gap-2">
+                            <button onclick="bookNow('Priya Mishra', 'Women\'s Auto Garage')"
+                                class="flex-1 py-2 px-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition flex items-center justify-center">
+                                <i class="ri-calendar-check-line mr-1"></i> Book Now
+                            </button>
+                            <button onclick="callProvider('9078161891')"
+                                class="w-12 h-10 bg-gray-100 text-amber-500 rounded-lg hover:bg-gray-200 transition flex items-center justify-center">
+                                <i class="ri-phone-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View More Button -->
+            <div class="mt-8 text-center">
+                <button class="bg-white text-amber-500 border border-amber-500 px-6 py-2 rounded-full hover:bg-amber-50 transition flex items-center mx-auto">
+                    <span>View More Auto Services</span>
+                    <i class="ri-arrow-right-line ml-2"></i>
+                </button>
             </div>
         </section>
     </main>
 
+    <!-- Map Section -->
+    <section class="bg-white py-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Find Services Near You</h2>
+            <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+                <p class="text-gray-500">Interactive map would be displayed here</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto px-4 text-center">
-            <p>© 2025 Service Provider Directory. All rights reserved.</p>
-            <p class="mt-2 text-gray-400">Find the best service professionals in your area.</p>
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Service Provider Directory</h3>
+                    <p class="text-gray-400">Find the best service professionals in your area. Quality service providers at your fingertips.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Register as Provider</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <p class="text-gray-400 flex items-center mb-2"><i class="ri-phone-line mr-2"></i> +91 9078161888</p>
+                    <p class="text-gray-400 flex items-center mb-2"><i class="ri-mail-line mr-2"></i> info@servicedirectory.com</p>
+                    <p class="text-gray-400 flex items-center"><i class="ri-map-pin-line mr-2"></i> Berhampur, Odisha, India</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>© 2025 Service Provider Directory. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
@@ -108,7 +463,28 @@
         function bookNow(serviceName, category) {
             window.location.href = `booking.html?serviceName=${encodeURIComponent(serviceName)}&category=${encodeURIComponent(category)}`;
         }
+
+        function callProvider(phoneNumber) {
+            window.location.href = `tel:${phoneNumber}`;
+        }
+
+        // Add animation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 150);
+            });
+        });
     </script>
 </body>
 
 </html>
+
