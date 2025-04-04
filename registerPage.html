@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,18 @@
     .form-section {
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
+
     .file-upload {
       border: 2px dashed #cbd5e0;
       transition: all 0.3s ease;
     }
+
     .file-upload:hover {
       border-color: #4299e1;
     }
   </style>
 </head>
+
 <body class="bg-gray-50">
   <div class="container mx-auto py-8 px-4">
     <!-- Form Section -->
@@ -27,7 +31,7 @@
         <h2 class="text-3xl font-bold text-gray-800">Service Booking Form</h2>
         <p class="text-gray-600 mt-2">Fill in your details to book our professional services</p>
       </div>
-      
+
       <form id="serviceForm" action="process_booking.php" method="POST" enctype="multipart/form-data" class="space-y-6">
         <!-- Personal Information Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -64,7 +68,19 @@
               </div>
               <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}"
                 class="pl-10 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="9876543210">
+                placeholder="1234567890">
+            </div>
+          </div>
+
+          <!-- email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">email *</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-envelope text-gray-400"></i>
+              </div>
+              <input placeholder="example@example.com" type="email" id="email" name="email" min="18" max="100" required
+                class="pl-10 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
             </div>
           </div>
 
@@ -86,200 +102,241 @@
           <label class="block text-sm font-medium text-gray-700 mb-2">Select Service *</label>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
             <!-- Electrical Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Electrician" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-bolt text-blue-500 mr-1"></i> Electrician
               </span>
             </label>
-            
+
             <!-- AC Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="AC Repair" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-snowflake text-blue-500 mr-1"></i> AC Repair
               </span>
             </label>
-            
+
             <!-- Appliance Mechanics -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Appliance Mechanic" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Appliance Mechanic" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-cogs text-blue-500 mr-1"></i> Appliance Mechanic
               </span>
             </label>
-            
+
             <!-- Water Purifiers -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="RO & Water Purifier" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="RO & Water Purifier" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-tint text-blue-500 mr-1"></i> RO & Water Purifier
               </span>
             </label>
-            
+
             <!-- Plumbing -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Plumber" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-faucet text-blue-500 mr-1"></i> Plumber
               </span>
             </label>
-            
+
             <!-- Carpentry -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Carpenter" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-hammer text-blue-500 mr-1"></i> Carpenter
               </span>
             </label>
-            
+
             <!-- Painting -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Painter" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-paint-roller text-blue-500 mr-1"></i> Painter
               </span>
             </label>
-            
+
             <!-- TV Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="LED TV Fitting" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="LED TV Fitting" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-tv text-blue-500 mr-1"></i> LED TV Fitting
               </span>
             </label>
-            
+
             <!-- Home Appliances -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Home Appliances" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Home Appliances" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-home text-blue-500 mr-1"></i> Home Appliances
               </span>
             </label>
-            
+
             <!-- Construction -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Construction Worker" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Construction Worker" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-hard-hat text-blue-500 mr-1"></i> Construction Worker
               </span>
             </label>
-            
+
             <!-- Tank Cleaning -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Tank Cleaner" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Tank Cleaner" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-water text-blue-500 mr-1"></i> Tank Cleaner
               </span>
             </label>
-            
+
             <!-- Moving Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Movers & Packers" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Movers & Packers" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-truck text-blue-500 mr-1"></i> Movers & Packers
               </span>
             </label>
-            
+
             <!-- Medical Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Ambulance" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-ambulance text-blue-500 mr-1"></i> Ambulance
               </span>
             </label>
-            
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Nurse" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-user-nurse text-blue-500 mr-1"></i> Nurse
               </span>
             </label>
-            
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Doctor" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-user-md text-blue-500 mr-1"></i> Doctor
               </span>
             </label>
-            
+
             <!-- Veterinary -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Veterinary Doctor" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Veterinary Doctor" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-paw text-blue-500 mr-1"></i> Veterinary Doctor
               </span>
             </label>
-            
+
             <!-- Event Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Party & Event Decoration" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Party & Event Decoration" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-birthday-cake text-blue-500 mr-1"></i> Party & Event Decoration
               </span>
             </label>
-            
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Catering Services" required class="form-radio h-5 w-5 text-blue-600">
+
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Catering Services" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-utensils text-blue-500 mr-1"></i> Catering Services
               </span>
             </label>
-            
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Photographer & Videographer" required class="form-radio h-5 w-5 text-blue-600">
+
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Photographer & Videographer" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-camera text-blue-500 mr-1"></i> Photographer & Videographer
               </span>
             </label>
-            
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="DJ & Sound System" required class="form-radio h-5 w-5 text-blue-600">
+
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="DJ & Sound System" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-music text-blue-500 mr-1"></i> DJ & Sound System
               </span>
             </label>
-            
+
             <!-- Home Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Tiles Fitting" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Tiles Fitting" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-border-style text-blue-500 mr-1"></i> Tiles Fitting
               </span>
             </label>
-            
+
             <!-- Professional Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Lawyer & Legal Work" required class="form-radio h-5 w-5 text-blue-600">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Lawyer & Legal Work" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-gavel text-blue-500 mr-1"></i> Lawyer & Legal Work
               </span>
             </label>
-            
+
             <!-- Vehicle Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Auto" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-car-side text-blue-500 mr-1"></i> Auto (3-Wheeler)
               </span>
             </label>
-            
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="2 Wheeler" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-motorcycle text-blue-500 mr-1"></i> 2 Wheeler
               </span>
             </label>
-            
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
-              <input type="radio" name="category" value="Cab (4 Wheeler)" required class="form-radio h-5 w-5 text-blue-600">
+
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+              <input type="radio" name="category" value="Cab (4 Wheeler)" required
+                class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-taxi text-blue-500 mr-1"></i> Cab (4 Wheeler)
               </span>
             </label>
-            
+
             <!-- Other Services -->
-            <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
+            <label
+              class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer">
               <input type="radio" name="category" value="Laundry" required class="form-radio h-5 w-5 text-blue-600">
               <span class="ml-2 text-gray-700">
                 <i class="fas fa-tshirt text-blue-500 mr-1"></i> Laundry
@@ -292,7 +349,7 @@
         <div class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Upload Documents *</label>
-            
+
             <!-- Aadhar Card -->
             <div class="mb-4">
               <label for="aadhar" class="block text-sm font-medium text-gray-700 mb-1">Aadhar Card *</label>
@@ -306,7 +363,7 @@
                 </div>
               </div>
             </div>
-     
+
           </div>
         </div>
 
@@ -330,19 +387,40 @@
 
   <!-- PHP Processing Script (process_booking.php) -->
   <script>
-    document.getElementById('serviceForm').addEventListener('submit', function(e) {
+    document.getElementById('serviceForm').addEventListener('submit', function (e) {
       const form = this;
       const submitButton = form.querySelector('button[type="submit"]');
       const originalText = submitButton.innerHTML;
-      
+
       // Show loading state
       submitButton.disabled = true;
       submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
-      
+
       // You can add additional form validation here if needed
-      
+
       // Form will submit to process_booking.php as specified in the form action
     });
+
+    // fetch('your-php-script.php', {
+    //   method: 'POST',
+    //   body: formData
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     if (data.success) {
+    //       alert(data.message);
+    //       // 3 सेकंड के बाद redirect करें
+    //       setTimeout(() => {
+    //         window.location.href = data.redirect || 'index.html';
+    //       }, 3000);
+    //     } else {
+    //       alert(data.message);
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.error('Error:', error);
+    //   });
   </script>
 </body>
+
 </html>

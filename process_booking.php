@@ -7,12 +7,9 @@ require 'mailer/Exception.php';
 require 'mailer/PHPMailer.php';
 require 'mailer/SMTP.php';
 
-// Enable error reporting
+// Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-// Set JSON header
-header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
@@ -29,16 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Server settings
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Your SMTP server
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'patrasagarika654@gmail.com'; // Your email
-        $mail->Password = 'dysj xwud kxel fxjq'; // Your app password
+        $mail->Username = 'patrasagarika654@gmail.com';
+        $mail->Password = 'dysj xwud kxel fxjq';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
         // Recipients
         $mail->setFrom('noreply@yourdomain.com', 'Service Booking System');
-        $mail->addAddress('patrasagarika654@gmail.com'); // Where to receive bookings
+        $mail->addAddress('patrasagarika654@gmail.com');
         if (!empty($email)) {
             $mail->addReplyTo($email, "$firstName $lastName");
         }
@@ -47,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isHTML(true);
         $mail->Subject = "New Service Booking: $category";
         
-        // HTML email body
         $mail->Body = "
         <h2 style='color: #3b82f6;'>New Service Booking Request</h2>
         <table style='width: 100%; border-collapse: collapse; margin-top: 20px;'>
@@ -78,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </table>
         ";
 
-        // Plain text version
         $mail->AltBody = "New Booking Request\n\n" .
                         "Service: $category\n" .
                         "Name: $firstName $lastName\n" .
@@ -90,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $allowedTypes = ['pdf', 'jpg', 'jpeg', 'png', 'doc', 'docx'];
         $maxFileSize = 5 * 1024 * 1024; // 5MB
 
-        // Process Aadhar Card
         if (!empty($_FILES['aadhar']['tmp_name'])) {
             $aadhar = $_FILES['aadhar'];
             $ext = strtolower(pathinfo($aadhar['name'], PATHINFO_EXTENSION));
@@ -99,36 +93,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-       
-
         // Send email
         $mail->send();
         
-        echo json_encode([
-            'success' => true,
-            'message' => 'Your booking request has been submitted successfully! We will contact you shortly.'
-        ]);
+        // Successful submission - redirect to index.html
+        header("Location: index.html?success=1");
+        exit();
 
     } catch (Exception $e) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'Failed to submit booking. Please try again later.',
-            'error' => $mail->ErrorInfo
-        ]);
+        // Error occurred - redirect back with error
+        header("Location: index.html?error=1");
+        exit();
     }
 } else {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Invalid request method'
-    ]);
+    // Invalid request method - redirect back
+    header("Location: index.html");
+    exit();
 }
 ?>
-
-// Server settings
-// $mail->isSMTP();
-// $mail->Host = 'smtp.gmail.com'; // Your SMTP server
-// $mail->SMTPAuth = true;
-// $mail->Username = 'patrasagarika654@gmail.com'; // Your email
-// $mail->Password = 'dysj xwud kxel fxjq'; // Your app password
-// $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-// $mail->Port = 587;
+x
